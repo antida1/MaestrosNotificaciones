@@ -23,6 +23,7 @@ import { UtilsInterceptor, UtilsErrorInterceptor } from './shared/utils/utils.in
 import { UnauthorizedRouteComponent } from './shared/components/common/unauthorized/unauthorized.component';
 
 import '../assets/styles';
+import { NotificationsService } from './modules/notifications/notifications.service';
 
 @NgModule({
     declarations: [ 
@@ -47,6 +48,7 @@ import '../assets/styles';
     ],
     providers: [ 
         UtilsGuard,
+        NotificationsService,
         { provide: APP_BASE_HREF, useValue : '/' },
         { provide: HTTP_INTERCEPTORS, useClass: UtilsInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: UtilsErrorInterceptor, multi: true },

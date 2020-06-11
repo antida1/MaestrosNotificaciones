@@ -9,7 +9,7 @@ export class GlobalConstants {
         today: 'Hoy',
         clear: 'Limpiar'
     };
-    public static singleSpaProps: any = { };
+    public static singleSpaProps: any = {"authToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsZGF2aWQiLCJlbWFpbCI6ImxkYXZpZEBwZXJzb25hbHNvZnQuY29tLmNvIiwianRpIjoiMWE3ZjlmYjctMDI5ZS00Nzc5LTg4MjMtNjgxNzVhNDhmMzY4Iiwic2lkIjoiYjA0Y2NmNTAtY2UzOS00MmI4LTg3MmQtZDdhYWNlYzJmZjliIiwiZmFtaWx5X25hbWUiOiJMaW5hIFBhdHJpY2lhIERhdmlkIEdvbnphbGV6IiwibGFzdF9sb2dpbl9kYXRlIjoiMTAvMDYvMjAyMCAwMzoyNDoyMCIsImRldmljZV9jbGllbnQiOiJzdHJpbmciLCJpcF9hZGRyZXNzX2NsaWVudCI6IjE3Mi4xOS41LjIxOCIsInJvbGVzIjoiW1wiYWRtaW5zbG9jYWxcIixcIkFuYWxpc3Rhc1wiXSIsImV4cCI6MTU5MTg4OTA2MCwiaXNzIjoicGVyc29uYWxzb2Z0LmNvbS5jbyIsImF1ZCI6InBlcnNvbmFsc29mdC5jb20uY28ifQ.m8X2utGF7jVPSULQUz3-SsvewpsRDgFEVHvDuNy1ZNg"};
     public static token: Function = () => {
         let token: string = "";
 

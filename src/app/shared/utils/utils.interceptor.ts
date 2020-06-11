@@ -10,13 +10,14 @@ export class UtilsInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let token: string = GlobalConstants.token();
+        let token: string = localStorage.getItem('token');
         request  = request.clone({
             setHeaders: {
                 "Authorization": ((token.toLowerCase().indexOf("bearer") == -1) ? `Bearer ${token}` : token),
                 "Access-Control-Allow-Origin": "*"
             }
         });
+        console.log(request);
         return next.handle(request);
     }
 }

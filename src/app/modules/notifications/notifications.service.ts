@@ -18,4 +18,8 @@ export class NotificationsService {
     public getByRecipient(recipient: string, type: string, nameApplication: string, page: number, limit: number): Observable<GenericResults> {
         return this.http.get<GenericResults>(URL_BASE_API_HISTORIAL_NOTIFICACIONES_W + `/ByRecipient/${recipient}/${type}/${nameApplication}/${page}/${limit}`);
     }
+
+    public getAllMaster(): Observable<any[]>{
+        return this.http.get<any[]>("http://172.19.5.218:9301/api/TypesList");
+    }
 }

@@ -45,7 +45,8 @@ export class NotificationsMessagesComponent implements OnInit {
     }
 
     public ngOnInit() {
-        let connection = new HubConnectionBuilder()
+
+         let connection = new HubConnectionBuilder()
             .withUrl(`${URL_BASE_API_NOTIFICACIONES_W}?user=${this.emailUser}_${this.nameApplication}`)
             .build();
 

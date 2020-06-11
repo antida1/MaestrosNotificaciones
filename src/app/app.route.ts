@@ -17,8 +17,7 @@ export const APP_ROUTES = [
   },
   {
     path: 'hermex/home',
-    component: HomeComponent,
-    canActivate: [UtilsGuard],
+    component: HomeComponent
   },
   { 
     path: 'hermex/external', 
