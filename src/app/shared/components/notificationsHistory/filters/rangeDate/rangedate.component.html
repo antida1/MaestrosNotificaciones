@@ -1,0 +1,42 @@
+<div>
+    <div class="p-grid">
+        <div class="p-col">
+            <p-toast [style]="{marginTop: '80px'}"></p-toast>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col-4">
+            <label>Fecha desde: </label><br>
+            <p-calendar 
+                [(ngModel)]="startDate" 
+                [showIcon]="true" 
+                [locale]="localeCalendar" 
+                readonlyInput="true" 
+                dateFormat="dd/mm/yy" 
+                showButtonBar="true">
+            </p-calendar>
+        </div>
+        <div class="p-col-4">
+            <label>Fecha hasta: </label><br>
+            <p-calendar 
+                [(ngModel)]="endDate" 
+                [showIcon]="true" 
+                [locale]="localeCalendar" 
+                readonlyInput="true" 
+                (onSelect)="onChangeEndDate()" 
+                dateFormat="dd/mm/yy" 
+                showButtonBar="true"
+                [disabled]="((startDate !== null && startDate !== undefined) ? false : true)">
+            </p-calendar>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <p-button icon="pi pi-search" iconPos="left" label="Buscar" [disabled]="!enableButtonSearch" (click)="search()"></p-button>
+        </div>
+    </div>
+    <br> 
+    <div *ngIf="showResults">
+        <notificationshistory-results [searchFilter]="searchFilter"></notificationshistory-results>
+    </div>
+</div>

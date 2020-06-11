@@ -1,0 +1,58 @@
+.empty-item-text {
+    background-color: #f1f1f1;
+    height: 18px;
+    animation: pulse 1s infinite ease-in-out;
+}
+
+.subject-text {
+    word-wrap: break-word;
+    max-width: 220px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    margin-top: 23px;
+}
+
+.subject-text-selected {
+    font-size: 16px;
+    word-wrap: break-word;
+    font-weight: 600;
+}
+
+.time-text {
+    font-size: 12px;
+    float: right;
+}
+
+.message-content-center {
+    display: grid;
+    text-align: center;
+    height: 100%;
+}
+
+.message-selected {
+    cursor: pointer;
+    height: 100px;
+}
+
+.message-selected-active {
+    background-color: #440099;
+    color: #fff;
+}
+
+.message-selected:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.img-logo-message {
+    height: 30px;
+    float: right;
+    margin-right: 35px;
+    margin-top: 21px;
+}
+
+#notifications-messages {
+    min-height: 611px;
+}

@@ -1,0 +1,29 @@
+<div>
+    <p-panel>
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title titulo-panel">Notificaciones - Historial</span>
+            </div>
+        </p-header>
+        <div class="p-grid">
+            <div class="p-col">
+                <label>Consultar por: </label><br>
+                <p-dropdown [options]="listFiltersNotificationsHistory" [(ngModel)]="filterNotificationsHistorySelected"></p-dropdown>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12" *ngIf="filterNotificationsHistorySelected == 'RF'">
+                <hr>
+                <notificationshistory-filter-rangedate></notificationshistory-filter-rangedate>
+            </div>
+            <div class="p-col-12" *ngIf="filterNotificationsHistorySelected == 'US'">
+                <hr>
+                <notificationshistory-filter-recipient></notificationshistory-filter-recipient>
+            </div>
+            <div class="p-col-12" *ngIf="filterNotificationsHistorySelected == 'TP'">
+                <hr>
+                <notificationshistory-filter-type></notificationshistory-filter-type>
+            </div>
+        </div>        
+    </p-panel>
+</div>

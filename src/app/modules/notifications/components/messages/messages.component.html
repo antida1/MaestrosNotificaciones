@@ -1,0 +1,100 @@
+<div id="notifications-messages" class="p-grid">
+    <div class="p-col-4">
+        <div style="text-align: right">
+            <p-dropdown 
+                [options]="listNotificationType" 
+                (onChange)="onChangeNotificationType($event)"
+                placeholder="Filtrar"
+                showClear="true"
+            ></p-dropdown>
+        </div>
+        <div *ngIf="showResults">
+            <p-table 
+                [value]="listResults" 
+                [lazy]="true" 
+                [totalRecords]="totalResults"
+                [rows]="10"
+                [paginator]="true" 
+                (onLazyLoad)="loadResults($event)"             
+                scrollHeight="525px"
+                [scrollable]="true">
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>
+                            <div [attr.id]="item.id" class="message-selected" (click)="onClickShowMessage(item)"> 
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-3">
+                                        <i class="pi pi-envelope" style="font-size: 3em;position: relative;top: 10px;"></i>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-9">
+                                        <div>
+                                            <span class="time-text">{{ item.createdDate | date:'dd/MM/LLL' }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="subject-text" [innerHTML]="item.subject"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                        <tr>
+                            <td>
+                                <span>El usuario no poseee mensajes</span>
+                            </td>
+                        </tr>
+                </ng-template>
+            </p-table>
+        </div>   
+        <div *ngIf="!showResults" class="ui-widget" style="height: 100%;text-align: center;position: relative;top: 50%;">
+            <i class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
+            <div>
+                Cargando...
+            </div>
+        </div>     
+    </div>
+    <div class="p-col-8">        
+        <div *ngIf="!showMessage" style="height: 90%;">
+            <ng-container *ngTemplateOutlet="unselectedMessage"></ng-container>    
+        </div>
+        <div *ngIf="showMessage" style="height: 90%;">
+            <ng-container *ngTemplateOutlet="selectedMessage"></ng-container>    
+        </div>
+    </div>
+</div>
+<ng-template #unselectedMessage>
+    <div class="ui-widget message-content-center">
+        <i class="pi pi-envelope" style="font-size:20em; height:0px;"></i>
+        <div class="ui-g">
+            <div class="ui-md-12">
+                <span>Seleccione un mensaje para leerlo.</span>
+            </div>            
+        </div>
+    </div>
+</ng-template>
+<ng-template #selectedMessage>
+    <div class="ui-widget" *ngIf="messageSelected" style="padding: 30px;">
+        <div class="ui-g">
+            <div class="ui-md-12">
+                <i class="pi pi-times" style="font-size:2em;float:right;cursor: pointer;" title="Cerrar mensaje" (click)="onClickCloseMessage()"></i>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-md-12">
+                <span class="time-text">{{ messageSelected.createdDate | date:'d/M/yy, h:mm a' }}</span>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-md-12">
+                <span class="subject-text-selected" [innerHTML]="messageSelected.subject"></span>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-md-12">
+                <p class="body-message-selected" style="max-height:330px;overflow:auto;" [innerHTML]="messageSelected.message"></p>
+            </div>
+        </div>
+    </div>
+</ng-template>

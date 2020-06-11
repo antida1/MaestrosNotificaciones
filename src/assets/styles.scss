@@ -1,0 +1,167 @@
+hermex .titulo-panel {
+    font-size:16px;
+    display:inline-block;
+    margin-top:2px
+}
+
+hermex .logo-panel {
+    width: 45px;
+    float: right;
+}
+
+hermex .ui-dropdown,
+hermex .ui-inputtext {
+    min-width: 300px;
+    font-size: 12px;
+}
+
+hermex .ui-dropdown .ui-dropdown-label {
+    font-size: 12px;
+}
+
+hermex .ui-panel .ui-panel-titlebar {
+    border: 0px solid;
+    background-color: #ff8842;
+    color: #fff;
+}
+
+body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight, 
+body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group.ui-state-highlight,
+body .ui-datepicker table td > a.ui-state-active, 
+body .ui-datepicker table td > span.ui-state-active,
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active,
+body .ui-table .ui-sortable-column.ui-state-highlight,
+body .ui-chips > ul.ui-inputtext .ui-chips-token {
+    background-color: #440099;
+}
+
+hermex .ui-dropdown:not(.ui-state-disabled):hover,
+hermex .ui-inputtext:enabled:hover:not(.ui-state-error) {
+    border-color: #757878;
+}
+
+hermex .ui-radiobutton .ui-radiobutton-box.ui-state-active {
+    border-color: #440099;
+    background-color: #440099;
+}
+
+body .ui-button {
+    background-color: #440099;
+    color: #fff;
+    border: 1px solid #440099;
+}
+
+body .ui-button-default {
+    background-color: #fff !important;
+    color: #440099 !important;  
+    border: 1px solid #440099;
+}
+
+body .ui-button:hover {
+    background-color: #fff !important;
+    color: #440099 !important;    
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-focus {
+    border-color: #440099;
+    color: #440099;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+    border-color: #440099;
+    background-color: #440099;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active:not(.ui-state-disabled):hover {
+    border-color: #440099;
+    background-color: #440099;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-focus {
+    border-color: #440099;
+    background-color: #440099;
+}
+
+hermex .ui-button.ui-button-text-icon-left .ui-button-text {
+    margin-left: 5px;
+}
+
+hermex a {
+    color: #440099; 
+}
+
+hermex a:hover {
+    color: #ff8842; 
+}
+
+p-chips .ui-chips > ul.ui-inputtext .ui-chips-token {
+    padding: 0.2145em 1.429em !important;
+}
+
+p-chips .ui-chips-token .ui-chips-token-icon {
+    right: 0.0em !important;
+}
+
+p-chips .chips ul {
+    max-height: 50px;
+    overflow-y: scroll !important;
+}
+
+body .ui-virtualscroller .ui-virtualscroller-content {
+    border: 1px solid #fff;
+}
+
+#notifications-messages .ui-paginator {
+    background-color: transparent;
+    border: 1px solid transparent;
+    margin-top: 8px;
+}
+
+#notifications-messages .ui-table .ui-table-tbody > tr > td {
+    border: none;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+#notifications-messages .ui-table-scrollable-body {
+    height: 550px;
+    border-right: 1px solid #c8c8c8;
+}
+
+#notifications-messages .body-message-selected::-webkit-scrollbar-track,
+#notifications-messages .ui-table-scrollable-body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#notifications-messages .body-message-selected::-webkit-scrollbar,
+#notifications-messages .ui-table-scrollable-body::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#notifications-messages .body-message-selected::-webkit-scrollbar-thumb,
+#notifications-messages .ui-table-scrollable-body::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+#notifications-messages .ui-dropdown .ui-dropdown-label {
+    text-align: right;
+    font-weight: 600;
+    display: initial;
+}
+
+#notifications-messages .ui-dropdown {
+    min-width: 0px;
+    border: transparent;
+}
+
+@import '../../node_modules/primeng/resources/themes/nova-light/theme.css';
+@import '../../node_modules/primeng/resources/primeng.min.css';
+@import '../../node_modules/primeflex/primeflex.css';
+@import '../../node_modules/primeicons/primeicons.css';

@@ -1,0 +1,17 @@
+<div>
+    <div class="p-grid">
+        <div class="p-col">
+            <p-toast [style]="{marginTop: '80px'}"></p-toast>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col-4">
+            <label>Tipo de notificación: </label><br>
+            <p-dropdown [options]="listNotificationType" [(ngModel)]="notificationTypeSelected" (onChange)="onChangeNotificationType()"></p-dropdown>
+        </div>
+    </div> 
+    <br> 
+    <div *ngIf="showResults">
+        <notificationshistory-results [searchFilter]="searchFilter"></notificationshistory-results>
+    </div>
+</div>

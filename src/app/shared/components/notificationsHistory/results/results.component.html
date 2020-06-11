@@ -1,0 +1,50 @@
+<div class="p-grid">
+    <div class="p-col">
+        <p-toast key="toast" [style]="{marginTop: '80px'}"></p-toast>               
+    </div>
+</div>  
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-confirmDialog appendTo="body" header="Confirmación" icon="pi pi-exclamation-triangle" acceptLabel="Sí"></p-confirmDialog>
+    </div>
+</div> 
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="total-resultados-consulta">
+            <span>Total resultados: {{totalResults}}</span>
+        </div>            
+    </div>
+    <div class="p-col-12">
+        <p-table [columns]="columns" [value]="listResults" [lazy]="true" (onLazyLoad)="loadResults($event)" [paginator]="true" 
+            [rows]="10" [totalRecords]="totalResults" [loading]="loading">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        <div *ngIf="col.field !== 'actions'">
+                                <span class="order-text">{{rowData[col.field]}}</span>  
+                        </div> 
+                        <div *ngIf="col.field === 'actions' && rowData['isSent'] == false" style="text-align: center;">
+                            <a href="#" (click)="notificationForwarding(rowData['id'], rowData['typeNotification'])" title="Reenviar notificación" [attr.disabled]="!(rowData['typeNotification'] =='Email')">
+                                <i class="pi pi-replay" style="font-size: 20px"></i>
+                            </a> 
+                        </div>                    
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="columns.length">
+                            No se encontrarón registros
+                        </td>
+                    </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

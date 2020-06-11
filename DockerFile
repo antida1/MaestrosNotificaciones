@@ -1,0 +1,21 @@
+# base image
+FROM node:latest as node
+
+
+# set working directory
+WORKDIR /app
+
+# install and cache app dependencies
+COPY . . 
+RUN npm install --no-optional --no-shrinkwrap --no-package-lock
+RUN npm run build:prod
+
+FROM nginx:alpine
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=node /app/dist /usr/share/nginx/html
+
+EXPOSE 4200 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
