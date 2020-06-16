@@ -2,28 +2,91 @@
     <p-panel>
         <p-header>
             <div class="ui-helper-clearfix">
-                <span class="ui-panel-title titulo-panel">Notificaciones - Historial</span>
+                <span class="ui-panel-title titulo-panel">Listas Maestras</span>
             </div>
         </p-header>
-        <div class="p-grid">
+        <p-card header="Crear tipo de lista">
+            <form (ngSubmit)="createTypeList()">
+                <div class="p-grid" style="margin-top: 20px;">
+                    <div class="p-col-3">
+                        <div class="p-field p-grid">
+                            <span class="ui-float-label">
+                                <input id="float-input" type="text" size="30" pInputText 
+                                    [(ngModel)]="masterTypeListSelected.id" name="id" readonly>
+                                <label for="float-input">Id</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-col-3">
+                        <div class="p-field p-grid">
+                            <span class="ui-float-label">
+                                <input id="float-input" type="text" size="30" pInputText
+                                    [(ngModel)]="masterTypeListSelected.name" name="nombre">
+                                <label for="float-input">Nombre</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-col-3">
+                        <div class="p-field p-grid">
+                            <span class="ui-float-label">
+                                <input id="float-input" type="text" size="30" pInputText
+                                    [(ngModel)]="masterTypeListSelected.description" name="descripcion">
+                                <label for="float-input">Descripción</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-col-3">
+                        <div class="p-field p-grid">
+                            <button pButton type="submit" label="Guardar" class="ui-button-info"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </p-card>
+
+        <div class="p-grid " style="margin-top: 20px;">
             <div class="p-col">
-                <label>Consultar por: </label><br>
-                <p-dropdown [options]="listFiltersNotificationsHistory" [(ngModel)]="filterNotificationsHistorySelected"></p-dropdown>
+                <p-table [value]="masterTypeList" #tt>
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">
+                            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                            <input type="text" pInputText size="50" placeholder="Filtro por nombre" style="width:auto"
+                                [(ngModel)]="filterTypeList" name="filter">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body">
+                        <tr *ngFor="let item of masterTypeList | filter:filterTypeList | paginate: {itemsPerPage: 1, currentPage: pageActual}">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.description}}</td>
+                            <td>
+                                <div class="" style="text-align: center;">
+                                    <button pButton type="button" icon="pi pi-pencil" iconPos="left"
+                                        class="ui-button-info" style="margin-right: 5px;"
+                                        (click)="update(item)"></button>
+
+                                    <button pButton type="button" icon="pi pi-trash " iconPos="left"
+                                        class="ui-button-danger" (click)="confirmDelete(item.id)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <pagination-controls (pageChange)=" pageActual = $event" style="text-align: center;">
+                </pagination-controls>
             </div>
         </div>
-        <div class="p-grid">
-            <div class="p-col-12" *ngIf="filterNotificationsHistorySelected == 'RF'">
-                <hr>
-                <notificationshistory-filter-rangedate></notificationshistory-filter-rangedate>
-            </div>
-            <div class="p-col-12" *ngIf="filterNotificationsHistorySelected == 'US'">
-                <hr>
-                <notificationshistory-filter-recipient></notificationshistory-filter-recipient>
-            </div>
-            <div class="p-col-12" *ngIf="filterNotificationsHistorySelected == 'TP'">
-                <hr>
-                <notificationshistory-filter-type></notificationshistory-filter-type>
-            </div>
-        </div>        
     </p-panel>
 </div>
+<p-toast></p-toast>
+<p-confirmDialog icon="pi pi-exclamation-triangle" acceptButtonStyleClass ="ui-button-info" 
+rejectButtonStyleClass ="ui-button-info">
+</p-confirmDialog>

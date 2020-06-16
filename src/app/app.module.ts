@@ -6,13 +6,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { JwtModule } from "@auth0/angular-jwt";
-
 import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.route';
 
 // PrimeNg
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ToastModule} from 'primeng/toast';
+import {PaginatorModule} from 'primeng/paginator';
 import { PanelModule } from 'primeng/panel';
 import { DropdownModule } from 'primeng/dropdown';
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {CardModule} from 'primeng/card';
 
 // Shared
 import { HomeComponent } from './shared/components/home/home.component';
@@ -21,6 +27,8 @@ import { NotificationsHistoryModule } from './shared/components/notificationsHis
 import { UtilsGuard } from './shared/utils/utils.guard';
 import { UtilsInterceptor, UtilsErrorInterceptor } from './shared/utils/utils.interceptor';
 import { UnauthorizedRouteComponent } from './shared/components/common/unauthorized/unauthorized.component';
+import {FilterPipe} from '../../src/app/shared/components/pipes/filter.pipe';
+import {NgxPaginationModule} from 'ngx-pagination'
 
 import '../assets/styles';
 import { NotificationsService } from './modules/notifications/notifications.service';
@@ -30,9 +38,17 @@ import { NotificationsService } from './modules/notifications/notifications.serv
         AppComponent,
         HomeComponent,
         NotFoundRouteComponent,
-        UnauthorizedRouteComponent
+        UnauthorizedRouteComponent,
+        FilterPipe
     ],
     imports: [ 
+        ConfirmDialogModule,
+        ToastModule,
+        PaginatorModule,
+        CardModule,
+        InputTextModule,
+        ButtonModule,
+        TableModule,
         BrowserModule,
         HttpClientModule,
         FormsModule,
@@ -41,6 +57,7 @@ import { NotificationsService } from './modules/notifications/notifications.serv
         DropdownModule,
         JwtModule,
         NotificationsHistoryModule,
+        NgxPaginationModule,
         RouterModule.forRoot(APP_ROUTES,
             {
               useHash: true
