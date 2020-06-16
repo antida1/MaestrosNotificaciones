@@ -67,8 +67,9 @@ export class HomeComponent implements OnInit {
             message:'Seguro deseas eliminar este registro?',
             header:'Confirmar acción',
             accept:() => {
-                this.notificationsService.deleteTypeList(id)
-                .subscribe(result => console.log(result),
+                this.notificationsService.deleteTypeList(id)                
+                .subscribe(result => {console.log(result);
+                this.loadListType()},
                 error => console.error(error))
                 this.loadListType();
             }
