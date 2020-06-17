@@ -7,6 +7,7 @@ import {ConfirmationService} from 'primeng/api';
 
 
 
+
 @Component({
     selector: 'home-page',
     templateUrl: './home.component.html',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     public filterNotificationsHistorySelected: string;
 
 
+
     constructor(private notificationsService: NotificationsService,
         private messageService: MessageService,private confirmation:ConfirmationService) {
         this.listFiltersNotificationsHistory = [
@@ -38,6 +40,7 @@ export class HomeComponent implements OnInit {
         ];
     }
     ngOnInit(): void {
+
         this.loadListType();
     }
 
@@ -53,7 +56,8 @@ export class HomeComponent implements OnInit {
     createTypeList() {
         this.notificationsService.createMaster(this.masterTypeListSelected)
             .subscribe(data => {
-                this.messageService.add({ severity: 'success', summary: 'Bien hecho!!', detail: 'El tipo de lista ha sido creado' })
+                this.messageService.add({ severity: 'success', summary: 'Bien hecho!!', detail: 'El tipo de lista ha sido creado' }),
+                this.reset(),
                 this.loadListType(),
                     error => {
                         this.messageService.add({ severity: 'error', summary: 'Uppss!!', detail: 'No se creo el tipo de lista' })
@@ -64,15 +68,18 @@ export class HomeComponent implements OnInit {
     confirmDelete(id:string){
 
         this.confirmation.confirm({
-            message:'Seguro deseas eliminar este registro?',
+            message:'¿ Seguro deseas eliminar este registro?',
             header:'Confirmar acción',
             accept:() => {
                 this.notificationsService.deleteTypeList(id)
-                .subscribe(result => console.log(result),
+                .subscribe(result =>{console.log(result),this.loadListType()},
                 error => console.error(error))
-                this.loadListType();
             }
         });
+    }
+
+    reset(){
+        this.masterTypeListSelected ={id: '', name: '',description: ''};
     }
 
 }

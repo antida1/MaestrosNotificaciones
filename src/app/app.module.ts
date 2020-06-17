@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -10,6 +11,7 @@ import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.route';
 
 // PrimeNg
+import {MessagesModule} from 'primeng/messages';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ToastModule} from 'primeng/toast';
 import {PaginatorModule} from 'primeng/paginator';
@@ -42,6 +44,7 @@ import { NotificationsService } from './modules/notifications/notifications.serv
         FilterPipe
     ],
     imports: [ 
+        MessagesModule,
         ConfirmDialogModule,
         ToastModule,
         PaginatorModule,

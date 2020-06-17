@@ -6,13 +6,12 @@
             </div>
         </p-header>
         <p-card header="Crear tipo de lista">
-            <form (ngSubmit)="createTypeList()">
+            <form (ngSubmit)="createTypeList()" novalidate #f="ngForm" novalidate>
                 <div class="p-grid" style="margin-top: 20px;">
                     <div class="p-col-3">
                         <div class="p-field p-grid">
                             <span class="ui-float-label">
-                                <input id="float-input" type="text" size="30" pInputText 
-                                    [(ngModel)]="masterTypeListSelected.id" name="id" readonly>
+                                <input id="float-input" type="text" size="30" pInputText name="id" readonly>
                                 <label for="float-input">Id</label>
                             </span>
                         </div>
@@ -20,24 +19,42 @@
                     <div class="p-col-3">
                         <div class="p-field p-grid">
                             <span class="ui-float-label">
-                                <input id="float-input" type="text" size="30" pInputText
-                                    [(ngModel)]="masterTypeListSelected.name" name="nombre">
+                                <input id="float-input" type="text" size="30" pInputText name="name"
+                                    [(ngModel)]="masterTypeListSelected.name" required #name="ngModel" nameValidation>
                                 <label for="float-input">Nombre</label>
                             </span>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                                <div *ngIf="name.errors.required">
+                                   <p class="requiredRed">El nombre es requerido*</p>
+                                </div>
+                                <div *ngIf="name.errors.nameValidation">
+                                    {{name.errors.nameValidation.message}}
+                                 </div>
+                            </div>
                         </div>
                     </div>
                     <div class="p-col-3">
                         <div class="p-field p-grid">
                             <span class="ui-float-label">
-                                <input id="float-input" type="text" size="30" pInputText
-                                    [(ngModel)]="masterTypeListSelected.description" name="descripcion">
+                                <input id="float-input" type="text" size="30" pInputText name="description"
+                                    [(ngModel)]="masterTypeListSelected.description" required #description = "ngModel">
                                 <label for="float-input">Descripción</label>
                             </span>
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                                <div *ngIf="description.errors.required">
+                                   <p class="requiredRed">La descripción es requerida*</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="p-col-3">
                         <div class="p-field p-grid">
-                            <button pButton type="submit" label="Guardar" class="ui-button-info"></button>
+                            <button pButton label="Guardar" class="ui-button-info" [disabled]="!f.valid"></button>
+                        </div>
+                    </div>
+                    <div class="p-col-3">
+                        <div class="p-field p-grid">
+                            <button pButton label="Limpiar" class="ui-button-info" (click)="reset()"></button>
                         </div>
                     </div>
                 </div>
@@ -63,7 +80,8 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body">
-                        <tr *ngFor="let item of masterTypeList | filter:filterTypeList | paginate: {itemsPerPage: 1, currentPage: pageActual}">
+                        <tr
+                            *ngFor="let item of masterTypeList | filter:filterTypeList | paginate: {itemsPerPage: 10, currentPage: pageActual}">
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.description}}</td>
@@ -87,6 +105,6 @@
     </p-panel>
 </div>
 <p-toast></p-toast>
-<p-confirmDialog icon="pi pi-exclamation-triangle" acceptButtonStyleClass ="ui-button-info" 
-rejectButtonStyleClass ="ui-button-info">
+<p-confirmDialog icon="pi pi-exclamation-triangle" acceptButtonStyleClass="ui-button-info"
+    rejectButtonStyleClass="ui-button-info" [style]="{width: '50vw'}">
 </p-confirmDialog>
