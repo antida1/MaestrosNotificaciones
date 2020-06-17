@@ -80,8 +80,12 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body">
+<<<<<<< HEAD
                         <tr
                             *ngFor="let item of masterTypeList | filter:filterTypeList | paginate: {itemsPerPage: 10, currentPage: pageActual}">
+=======
+                        <tr *ngFor= "let item of masterTypeList | filter:filterTypeList | paginate: { itemsPerPage: 10, currentPage: pageActual}" >
+>>>>>>> 191c1a32c45b3506804412d8e708bcc30d2188be
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.description}}</td>
@@ -98,7 +102,7 @@
                         </tr>
                     </ng-template>
                 </p-table>
-                <pagination-controls (pageChange)=" pageActual = $event" style="text-align: center;">
+                <pagination-controls (pageChange)= " pageActual = $event" style="text-align: center;">
                 </pagination-controls>
             </div>
         </div>

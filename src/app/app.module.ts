@@ -30,7 +30,7 @@ import { UtilsGuard } from './shared/utils/utils.guard';
 import { UtilsInterceptor, UtilsErrorInterceptor } from './shared/utils/utils.interceptor';
 import { UnauthorizedRouteComponent } from './shared/components/common/unauthorized/unauthorized.component';
 import {FilterPipe} from '../../src/app/shared/components/pipes/filter.pipe';
-import {NgxPaginationModule} from 'ngx-pagination'
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import '../assets/styles';
 import { NotificationsService } from './modules/notifications/notifications.service';

@@ -34,4 +34,9 @@ export class NotificationsService {
 
         return this.http.delete<any>(this.apiUrl + "/"+ id);
     }
+
+    public updateTypeList(master:MasterTypeList):Observable<any>{
+
+        return this.http.put<any>(this.apiUrl,master);
+    }
 }

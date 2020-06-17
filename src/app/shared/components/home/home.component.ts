@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
     }
 
     createTypeList() {
+        if (this.masterTypeListSelected.id == ""){
         this.notificationsService.createMaster(this.masterTypeListSelected)
             .subscribe(data => {
                 this.messageService.add({ severity: 'success', summary: 'Bien hecho!!', detail: 'El tipo de lista ha sido creado' }),
@@ -63,6 +64,16 @@ export class HomeComponent implements OnInit {
                         this.messageService.add({ severity: 'error', summary: 'Uppss!!', detail: 'No se creo el tipo de lista' })
                     }
             });
+        }else{
+            this.notificationsService.updateTypeList(this.masterTypeListSelected)
+            .subscribe(data => {
+                this.messageService.add({ severity: 'success', summary: 'Bien hecho!!', detail: 'El tipo de lista ha sido actualizado' })
+                this.loadListType(),
+                    error => {
+                        this.messageService.add({ severity: 'error', summary: 'Uppss!!', detail: 'No se actualizo el tipo de lista' })
+                    }
+            });
+        }   
     }
 
     confirmDelete(id:string){
