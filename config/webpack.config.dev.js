@@ -52,7 +52,8 @@ module.exports = webpackMerge(commonConfig, {
             ENV: JSON.stringify('DEV'),
             URL_BASE_API_HISTORIAL_NOTIFICACIONES_W: JSON.stringify(constants.URL_BASE_API_HISTORIAL_NOTIFICACIONES_W),
             URL_BASE_API_REENVIO_NOTIFICACIONES_W: JSON.stringify(constants.URL_BASE_API_REENVIO_NOTIFICACIONES_W),
-            URL_BASE_API_NOTIFICACIONES_W: JSON.stringify(constants.URL_BASE_API_NOTIFICACIONES_W)      
+            URL_BASE_API_NOTIFICACIONES_W: JSON.stringify(constants.URL_BASE_API_NOTIFICACIONES_W),
+            URL_BASE_API_MASTER_TYPELIST_W: JSON.stringify(constants.URL_BASE_API_MASTER_TYPELIST_W) 
         })
     ]
 });

@@ -1,5 +1,6 @@
 {
     "URL_BASE_API_HISTORIAL_NOTIFICACIONES_W": "http://172.19.5.218:9311/api/notificationshistory",
     "URL_BASE_API_REENVIO_NOTIFICACIONES_W": "http://172.19.5.218:9311/api/notificationforwarding",
-    "URL_BASE_API_NOTIFICACIONES_W": "http://172.19.5.218:9311/notification"  
+    "URL_BASE_API_NOTIFICACIONES_W": "http://172.19.5.218:9311/notification",
+    "URL_BASE_API_MASTER_TYPELIST":"http://172.19.5.218:9316/api/w/typeslist/"  
 }

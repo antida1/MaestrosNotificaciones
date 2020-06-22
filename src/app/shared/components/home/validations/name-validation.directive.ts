@@ -9,10 +9,11 @@ import validator from 'validator';
 export class NameValidationDirective implements Validator {
 
   validate(control: import("@angular/forms").AbstractControl): import("@angular/forms").ValidationErrors {
-    const name = <string>control.value;
-    const onlyLetters = /[A-Za-z]/;
 
-    if (/[A-Za-z]/.test(name)) {
+    const name = <string>control.value;
+    const onlyLetters = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ][ñA-Za-z _ñÑáéíóúÁÉÍÓÚüÜ]*[ñA-Za-zñÑáéíóúÁÉÍÓÚüÜ][ñA-Za-z _ñÑáéíóúÁÉÍÓÚüÜ]*$/;
+  
+    if (!onlyLetters.test(name)){
 
       return { 'nameValidation': { 'message': 'El nombre solo debe contener letras' } }
     }

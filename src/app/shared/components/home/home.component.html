@@ -6,107 +6,109 @@
             </div>
         </p-header>
         <p-card header="Crear tipo de lista">
-            <form (ngSubmit)="createTypeList()" novalidate #f="ngForm" novalidate>
+            <form (ngSubmit)="createTypeList()"  #formTypeList="ngForm" novalidate>
                 <div class="p-grid" style="margin-top: 20px;">
-                    <div class="p-col-3">
+                    <div class="p-col-4">
                         <div class="p-field p-grid">
                             <span class="ui-float-label">
-                                <input id="float-input" type="text" size="30" pInputText name="id" readonly>
+                                <input id="float-input" type="text" size="30" pInputText name="id" readonly
+                                    [(ngModel)]="masterTypeListSelected.id" disabled >
                                 <label for="float-input">Id</label>
                             </span>
                         </div>
                     </div>
-                    <div class="p-col-3">
+                    <div class="p-col-4">
                         <div class="p-field p-grid">
                             <span class="ui-float-label">
                                 <input id="float-input" type="text" size="30" pInputText name="name"
-                                    [(ngModel)]="masterTypeListSelected.name" required #name="ngModel" nameValidation>
+                                    [(ngModel)]="masterTypeListSelected.name" 
+                                    required #name="ngModel" nameValidation>
                                 <label for="float-input">Nombre</label>
                             </span>
                             <div *ngIf="name.invalid && (name.dirty || name.touched)">
                                 <div *ngIf="name.errors.required">
-                                   <p class="requiredRed">El nombre es requerido*</p>
+                                    <p class="requiredRed">El nombre es requerido*</p>
                                 </div>
-                                <div *ngIf="name.errors.nameValidation">
+                                <div *ngIf="name.errors.nameValidation" class="requiredRed">
                                     {{name.errors.nameValidation.message}}
-                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="p-col-3">
+                    <div class="p-col-4">
                         <div class="p-field p-grid">
                             <span class="ui-float-label">
                                 <input id="float-input" type="text" size="30" pInputText name="description"
-                                    [(ngModel)]="masterTypeListSelected.description" required #description = "ngModel">
+                                    [(ngModel)]="masterTypeListSelected.description"
+                                     required #description="ngModel">
                                 <label for="float-input">Descripción</label>
                             </span>
                             <div *ngIf="description.invalid && (description.dirty || description.touched)">
                                 <div *ngIf="description.errors.required">
-                                   <p class="requiredRed">La descripción es requerida*</p>
+                                    <p class="requiredRed">La descripción es requerida*</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="p-col-3">
-                        <div class="p-field p-grid">
-                            <button pButton label="Guardar" class="ui-button-info" [disabled]="!f.valid"></button>
-                        </div>
-                    </div>
-                    <div class="p-col-3">
-                        <div class="p-field p-grid">
-                            <button pButton label="Limpiar" class="ui-button-info" (click)="reset()"></button>
+                    <div class=" form-group row">
+                        <div class="col-12">
+                            <button label="Guardar" [disabled]="!formTypeList.valid"
+                                class="btn btn-primary mr-3">Guardar</button>
+                            <button type="button" label="Limpiar" class="btn btn-primary" (click)="reset()">Limpiar</button>
                         </div>
                     </div>
                 </div>
             </form>
         </p-card>
 
-        <div class="p-grid " style="margin-top: 20px;">
-            <div class="p-col">
-                <p-table [value]="masterTypeList" #tt>
-                    <ng-template pTemplate="caption">
-                        <div style="text-align: right">
-                            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
-                            <input type="text" pInputText size="50" placeholder="Filtro por nombre" style="width:auto"
-                                [(ngModel)]="filterTypeList" name="filter">
+        <div class="container-fluid">
+            <div class="row" style="margin-top: 20px;">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Filtrar:</label>
+                                <input type="text" placeholder="Filtro por nombre" style="width:auto"
+                                    [(ngModel)]="filterTypeList" name="filter" class="form-control">
+                            </div>
                         </div>
-                    </ng-template>
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body">
-<<<<<<< HEAD
-                        <tr
-                            *ngFor="let item of masterTypeList | filter:filterTypeList | paginate: {itemsPerPage: 10, currentPage: pageActual}">
-=======
-                        <tr *ngFor= "let item of masterTypeList | filter:filterTypeList | paginate: { itemsPerPage: 10, currentPage: pageActual}" >
->>>>>>> 191c1a32c45b3506804412d8e708bcc30d2188be
-                            <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.description}}</td>
-                            <td>
-                                <div class="" style="text-align: center;">
-                                    <button pButton type="button" icon="pi pi-pencil" iconPos="left"
-                                        class="ui-button-info" style="margin-right: 5px;"
-                                        (click)="update(item)"></button>
+                    </div>
+                    <div class="table-responsive">
+                        <table #tt class="table table-hover table-bordered">
+                            <thead class="thead thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let item of masterTypeList | filter:filterTypeList | paginate: {itemsPerPage: 10, currentPage: pageActual}">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.description}}</td>
+                                    <td>
+                                        <div class="" style="text-align: center;">
+                                            <button pButton type="button" icon="pi pi-pencil" iconPos="left"
+                                                class="ui-button-info" style="margin-right: 5px;"
+                                                (click)="update(item)"></button>
 
-                                    <button pButton type="button" icon="pi pi-trash " iconPos="left"
-                                        class="ui-button-danger" (click)="confirmDelete(item.id)"></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-                <pagination-controls (pageChange)= " pageActual = $event" style="text-align: center;">
-                </pagination-controls>
+                                            <button pButton type="button" icon="pi pi-trash " iconPos="left"
+                                                class="ui-button-danger" (click)="confirmDelete(item.id)"></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </p-panel>
+    <pagination-controls (pageChange)=" pageActual = $event" style="text-align: center;">
+    </pagination-controls>
 </div>
 <p-toast></p-toast>
 <p-confirmDialog icon="pi pi-exclamation-triangle" acceptButtonStyleClass="ui-button-info"

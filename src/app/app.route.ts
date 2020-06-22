@@ -3,33 +3,14 @@ import { NotFoundRouteComponent } from './shared/components/common/notfound/notf
 import { MODULES_ROUTE } from './modules/modules-routing.module';
 import { UnauthorizedRouteComponent } from './shared/components/common/unauthorized/unauthorized.component';
 import { UtilsGuard } from './shared/utils/utils.guard';
+import { PruebaComponent } from './shared/components/prueba/prueba.component';
 
 export const APP_ROUTES = [
-  { 
-      path: "", 
-      redirectTo: "/hermex/home", 
-      pathMatch: "full" 
-  },
-  { 
-    path: "hermex", 
-    redirectTo: "/hermex/home", 
-    pathMatch: "full" 
-  },
-  {
-    path: 'hermex/home',
-    component: HomeComponent
-  },
-  { 
-    path: 'hermex/external', 
-    children: MODULES_ROUTE,
-    canActivate: [UtilsGuard],
-  },
-  { 
-    path: 'hermex/unauthorized', 
-    component: UnauthorizedRouteComponent 
-  },
-  { 
-    path: '**', 
-    component: NotFoundRouteComponent 
-  }  
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  { path: "hermex", redirectTo: "/hermex/home", pathMatch: "full" },
+  { path: 'home', component: HomeComponent },
+  { path: 'prueba', component: PruebaComponent },
+  { path: 'external', children: MODULES_ROUTE, canActivate: [UtilsGuard], },
+  { path: 'unauthorized', component: UnauthorizedRouteComponent },
+  { path: '**', component: NotFoundRouteComponent }
 ]

@@ -4,6 +4,8 @@ import { NotificationsService } from '../../../modules/notifications/notificatio
 import { MasterTypeList } from '../../models/master.model';
 import { MessageService } from 'primeng/api';
 import {ConfirmationService} from 'primeng/api';
+import { FormBuilder } from '@angular/forms';
+import { TypeListServiceService } from './typeListService.service';
 
 
 
@@ -16,7 +18,13 @@ import {ConfirmationService} from 'primeng/api';
 
 export class HomeComponent implements OnInit {
 
+    constructor(private typeListService: TypeListServiceService,
+        private messageService: MessageService,
+        private confirmation:ConfirmationService,
+        private formBuilder:FormBuilder) {
+    }
 
+    
     public masterTypeListSelected: MasterTypeList = {
         id: '',
         name: '',
@@ -29,23 +37,13 @@ export class HomeComponent implements OnInit {
     public filterNotificationsHistorySelected: string;
 
 
-
-    constructor(private notificationsService: NotificationsService,
-        private messageService: MessageService,private confirmation:ConfirmationService) {
-        this.listFiltersNotificationsHistory = [
-            { label: '-- Seleccione --', value: null },
-            { label: 'Por rango de fechas', value: 'RF' },
-            { label: 'Por destinatario', value: 'US' },
-            { label: 'Por tipo', value: 'TP' }
-        ];
-    }
     ngOnInit(): void {
 
-        this.loadListType();
+        this.loadTypeList();
     }
 
-    loadListType(): void {
-        this.notificationsService.getAllMaster()
+    loadTypeList(): void {
+        this.typeListService.getAllMaster()
             .subscribe(result => { this.masterTypeList = result; console.log(this.masterTypeList) });
     }
 
@@ -55,20 +53,21 @@ export class HomeComponent implements OnInit {
 
     createTypeList() {
         if (this.masterTypeListSelected.id == ""){
-        this.notificationsService.createMaster(this.masterTypeListSelected)
+        this.typeListService.createMaster(this.masterTypeListSelected)
             .subscribe(data => {
                 this.messageService.add({ severity: 'success', summary: 'Bien hecho!!', detail: 'El tipo de lista ha sido creado' }),
                 this.reset(),
-                this.loadListType(),
+                this.loadTypeList(),
                     error => {
                         this.messageService.add({ severity: 'error', summary: 'Uppss!!', detail: 'No se creo el tipo de lista' })
                     }
             });
         }else{
-            this.notificationsService.updateTypeList(this.masterTypeListSelected)
+            this.typeListService.updateTypeList(this.masterTypeListSelected)
             .subscribe(data => {
                 this.messageService.add({ severity: 'success', summary: 'Bien hecho!!', detail: 'El tipo de lista ha sido actualizado' })
-                this.loadListType(),
+                this.reset(),
+                this.loadTypeList(),
                     error => {
                         this.messageService.add({ severity: 'error', summary: 'Uppss!!', detail: 'No se actualizo el tipo de lista' })
                     }
@@ -82,15 +81,15 @@ export class HomeComponent implements OnInit {
             message:'¿ Seguro deseas eliminar este registro?',
             header:'Confirmar acción',
             accept:() => {
-                this.notificationsService.deleteTypeList(id)
-                .subscribe(result =>{console.log(result),this.loadListType()},
+                this.typeListService.deleteTypeList(id)
+                .subscribe(result =>{console.log(result),this.loadTypeList()},
                 error => console.error(error))
             }
         });
     }
 
     reset(){
-        this.masterTypeListSelected ={id: '', name: '',description: ''};
+        this.masterTypeListSelected = {id: '', name: '',description: ''};
     }
 
 }
